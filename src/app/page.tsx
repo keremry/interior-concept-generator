@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ConceptResult } from "@/components/ConceptResult";
 import { ConfigPanel } from "@/components/ConfigPanel";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { generateConcept } from "@/lib/generateConcept";
+import {
+  clearSelection,
+  loadSelection,
+  saveSelection,
+} from "@/lib/storage";
 import type {
   GeneratedConcept,
   MoodId,
@@ -19,6 +24,22 @@ export default function Home() {
   const [mood, setMood] = useState<MoodId>("calm");
   const [concept, setConcept] = useState<GeneratedConcept | null>(null);
   const [variation, setVariation] = useState(0);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    const saved = loadSelection();
+    if (saved) {
+      setSpace(saved.space);
+      setStyle(saved.style);
+      setMood(saved.mood);
+    }
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    saveSelection({ space, style, mood });
+  }, [space, style, mood, hydrated]);
 
   const handlePreset = () => {
     setSpace("cafe");
@@ -48,6 +69,7 @@ export default function Home() {
     setMood("calm");
     setVariation(0);
     setConcept(null);
+    clearSelection();
   };
 
   return (
