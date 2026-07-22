@@ -1,15 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import { ConceptResult } from "@/components/ConceptResult";
 import { ConfigPanel } from "@/components/ConfigPanel";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import type { MoodId, SpaceId, StyleId } from "@/types/concept";
+import { generateConcept } from "@/lib/generateConcept";
+import type {
+  GeneratedConcept,
+  MoodId,
+  SpaceId,
+  StyleId,
+} from "@/types/concept";
 
 export default function Home() {
   const [space, setSpace] = useState<SpaceId>("living-room");
   const [style, setStyle] = useState<StyleId>("japandi");
   const [mood, setMood] = useState<MoodId>("calm");
+  const [concept, setConcept] = useState<GeneratedConcept | null>(null);
+  const [variation, setVariation] = useState(0);
 
   const handlePreset = () => {
     setSpace("cafe");
@@ -18,9 +27,27 @@ export default function Home() {
   };
 
   const handleGenerate = () => {
-    // Generation engine lands in the next iteration
-    const target = document.getElementById("results");
-    target?.scrollIntoView({ behavior: "smooth" });
+    const next = generateConcept({ space, style, mood }, 0);
+    setVariation(0);
+    setConcept(next);
+    window.setTimeout(() => {
+      document.getElementById("results")?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+  };
+
+  const handleRegenerate = () => {
+    const nextVariation = variation + 1;
+    const next = generateConcept({ space, style, mood }, nextVariation);
+    setVariation(nextVariation);
+    setConcept(next);
+  };
+
+  const handleReset = () => {
+    setSpace("living-room");
+    setStyle("japandi");
+    setMood("calm");
+    setVariation(0);
+    setConcept(null);
   };
 
   return (
@@ -38,11 +65,11 @@ export default function Home() {
           onGenerate={handleGenerate}
           onPreset={handlePreset}
         />
-        <section id="results" className="mx-auto max-w-6xl px-6 py-16 sm:px-8">
-          <p className="text-sm text-muted">
-            Concept output will appear here after generation.
-          </p>
-        </section>
+        <ConceptResult
+          concept={concept}
+          onRegenerate={handleRegenerate}
+          onReset={handleReset}
+        />
       </main>
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-8 text-xs text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
