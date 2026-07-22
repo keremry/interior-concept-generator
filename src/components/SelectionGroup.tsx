@@ -24,10 +24,10 @@ export function SelectionGroup<T extends string>({
               key={option.id}
               type="button"
               onClick={() => onChange(option.id)}
-              className={`border px-4 py-3 text-left text-sm transition-colors ${
+              className={`border px-3 py-3 text-left text-sm transition-colors duration-200 sm:px-4 ${
                 selected
                   ? "border-accent bg-surface text-foreground"
-                  : "border-border bg-transparent text-muted hover:border-accent/60 hover:text-foreground"
+                  : "border-border bg-transparent text-muted hover:border-[#3a3a3a] hover:text-foreground"
               }`}
               aria-pressed={selected}
             >

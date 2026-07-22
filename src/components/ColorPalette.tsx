@@ -18,7 +18,7 @@ export function ColorPalette({ palette }: ColorPaletteProps) {
       </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
         {palette.map((swatch) => (
-          <div key={swatch.hex} className="space-y-2">
+          <div key={`${swatch.name}-${swatch.hex}`} className="space-y-2">
             <div
               className="aspect-[4/3] border border-border"
               style={{ backgroundColor: swatch.hex }}
@@ -26,7 +26,9 @@ export function ColorPalette({ palette }: ColorPaletteProps) {
             />
             <div>
               <p className="text-sm text-foreground">{swatch.name}</p>
-              <p className="font-mono text-xs text-muted">{swatch.hex}</p>
+              <p className="font-mono text-[11px] tracking-wide text-muted">
+                {swatch.hex}
+              </p>
             </div>
           </div>
         ))}

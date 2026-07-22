@@ -94,13 +94,13 @@ export default function Home() {
         />
       </main>
       <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-8 text-xs text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <span>Interior Concept Generator</span>
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-8 text-xs text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <span>Interior Concept Generator · Kerem</span>
           <a
             href="https://www.ka57studio.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-foreground"
+            className="transition-colors duration-200 hover:text-foreground"
           >
             www.ka57studio.com
           </a>

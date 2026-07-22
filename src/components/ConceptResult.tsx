@@ -36,8 +36,8 @@ export function ConceptResult({
   if (!concept) {
     return (
       <section id="results" className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
-          <p className="text-sm text-muted">
+        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+          <p className="max-w-xl text-sm leading-relaxed text-muted">
             Configure a space, style and mood, then generate a concept to see
             palettes, materials, lighting and render prompts.
           </p>
@@ -47,18 +47,15 @@ export function ConceptResult({
   }
 
   return (
-    <section
-      id="results"
-      className="border-b border-border animate-in fade-in duration-500"
-    >
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
+    <section id="results" className="border-b border-border">
+      <div className="result-enter mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
         <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.2em] text-muted">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-muted sm:text-xs">
               Generated Concept
               {concept.variation > 0 ? ` · Variation ${concept.variation + 1}` : ""}
             </p>
-            <h2 className="mt-3 text-2xl font-medium tracking-tight text-foreground sm:text-4xl">
+            <h2 className="font-display mt-3 text-2xl font-medium tracking-tight text-foreground sm:text-4xl">
               {concept.title}
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted">
