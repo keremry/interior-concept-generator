@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Interior Concept Generator
 
-## Getting Started
+Generate interior design concepts, material palettes and AI render prompts based on space, style and mood.
 
-First, run the development server:
+**CONCEPT.** is a lightweight direction tool for interior designers. Pick a space typology, a design language and an atmospheric mood — then get a full concept pack without any external AI API.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- Space, style and mood configuration with curated option sets
+- Modular generation engine that combines structured datasets (not random filler text)
+- Five-color palettes with HEX values
+- Primary materials, furniture direction and lighting strategy
+- Key design principles and a ready-to-use Midjourney / D5 / AI render prompt
+- Regenerate variations, reset, and one-click “Try Brutalist Café” preset
+- Copy-to-clipboard for HEX values, concept narrative and render prompts
+- Last selection persisted in `localStorage`
+- Fully responsive, premium dark studio interface
+
+## Screenshots
+
+> Placeholder — add product screenshots here after first deploy.
+
+```
+docs/screenshots/
+  ├── home.png
+  ├── configuration.png
+  └── generated-concept.png
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+git clone https://github.com/keremry/interior-concept-generator.git
+cd interior-concept-generator
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+### Production build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js](https://nextjs.org) (App Router)
+- TypeScript
+- Tailwind CSS
+- Lucide Icons
+- No database
+- No external AI API — all generation runs locally from structured data
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+  app/           # App router layout and page
+  components/    # UI building blocks
+  data/          # Space, style and mood datasets
+  lib/           # Generation engine + storage helpers
+  types/         # Strict TypeScript contracts
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Future Improvements
+
+- Export concept packs as PDF or Markdown
+- Save multiple named concepts in-browser
+- Additional space typologies and regional style packs
+- Side-by-side concept comparison
+- Optional image reference board
+
+## Author
+
+**Kerem**  
+Website: [www.ka57studio.com](https://www.ka57studio.com)
+
+## License
+
+MIT
